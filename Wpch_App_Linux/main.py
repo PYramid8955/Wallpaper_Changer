@@ -1,7 +1,8 @@
-from datetime import datetime
+import datetime
 from Packages.getUnsplImg import *
 import os
 
+home = os.path.expanduser('~')
 WARNING_MSG = """###########################################################
 # Be careful! Editing this can lead to unexpected errors! #
 # Syntax:  (Suggest - run client.py, it'll edit it for u) #
@@ -29,58 +30,67 @@ db = {i.split("=")[0]: eval(i.split("=")[1]) for i in db[:db.index('############
 if db['time'] == 1:
 	if db['option'] == 1:
 		seasons = {(12, 1, 2): 'winter', (3, 4, 5): 'spring', (6, 7, 8): 'summer', (9, 10, 11): 'autumn'}
-		now = int(datetime.now().strftime("%m"))
+		now = int(datetime.datetime.now().strftime("%m"))
 		for i in seasons.keys():
 			if now in i:
 				now = seasons[i]
-		os.system('wget -O wallpaper ' + getLinks(now))
+		os.system('wget -O wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 	elif db['option'] == 2:
-		os.system('wget -O wallpaper ' + getLinks(db['search']))
+		os.system('wget -O wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 	else:
-		os.system('wget -O wallpaper ' + getLinks('trending'))
+		os.system('wget -O wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 elif db['time'] in (2, 3):
-	timeNow = datetime.now()
+	timeNow = datetime.datetime.now()
 	ADD_TO_DATE = [datetime.timedelta(days=1), datetime.timedelta(weeks=1)]
 	change = False
 	if db['lastRun']:
 		lastRun = db['lastRun'].split(' ')
-		timeDB = datetime(lastRun[0], lastRun[1], lastRun[2]) + ADD_TO_DATE[db['time']-2]
+		timeDB = datetime.datetime(lastRun[0], lastRun[1], lastRun[2]) + ADD_TO_DATE[db['time']-2]
 		if timeDB <= timeNow: change = True
 	if change or not db['lastRun']:
-		if db['option'] == 1:
-			seasons = {(12, 1, 2): 'winter', (3, 4, 5): 'spring', (6, 7, 8): 'summer', (9, 10, 11): 'autumn'}
-			now = int(datetime.now().strftime("%m"))
-			for i in seasons.keys():
-				if now in i:
-					now = seasons[i]
-			os.system('wget -O wallpaper ' + getLinks(now))
-		elif db['option'] == 2:
-			os.system('wget -O wallpaper ' + getLinks(db['search']))
-		else:
-			os.system('wget -O wallpaper ' + getLinks('trending'))
 		db['lastRun'] = timeNow.strftime('"%Y %m %d"')
 		dbText = ''
 		for i in range(len(db.keys())):
-			dbText += db.keys()[i] + '=' + db.values()[i] + '\n'
+			dbText += list(db.keys())[i] + '=' + str(list(db.values())[i]) + '\n'
 		dbText += WARNING_MSG
 		with open("db.txt", "w") as f:
 			f.write(dbText)
-		
+		if db['option'] == 1:
+			seasons = {(12, 1, 2): 'winter', (3, 4, 5): 'spring', (6, 7, 8): 'summer', (9, 10, 11): 'autumn'}
+			now = int(datetime.datetime.now().strftime("%m"))
+			for i in seasons.keys():
+				if now in i:
+					now = seasons[i]
+			os.system('wget -O wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+		elif db['option'] == 2:
+			os.system('wget -O wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+		else:
+			os.system('wget -O wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 	
 else:
 	seasons = {(12, 1, 2): 'winter', (3, 4, 5): 'spring', (6, 7, 8): 'summer', (9, 10, 11): 'autumn'}
-	now = int(datetime.now().strftime("%m"))
-	for i in seasons.keys():
-		if db['lastRun'] in i:
-			then = seasons[i]
-		if now in i:
-			now = seasons[i]
-	if now != then:
+	now = int(datetime.datetime.now().strftime("%m"))
+	change = False
+	if db['lastRun']:
+		for i in seasons.keys():
+			if db['lastRun'] in i:
+				then = seasons[i]
+			if now in i:
+				now = seasons[i]
+		change = now != then
+	if change or not db['lastRun']:
+		db['lastRun'] = now
+		dbText = ''
+		for i in range(len(db.keys())):
+			dbText += list(db.keys())[i] + '=' + str(list(db.values())[i]) + '\n'
+		dbText += WARNING_MSG
+		with open("db.txt", "w") as f:
+			f.write(dbText)
 		if db['option'] == 1:
-			os.system('wget -O wallpaper ' + getLinks(now))
+			os.system('wget -O wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 		elif db['option'] == 2:
-			os.system('wget -O wallpaper ' + getLinks(db['search']))
+			os.system('wget -O wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 		else:
-			os.system('wget -O wallpaper ' + getLinks('trending'))
+			os.system('wget -O wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 		
 	
