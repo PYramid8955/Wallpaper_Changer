@@ -4,8 +4,9 @@ from Packages.getUnsplImg import *
 def config(err = 0):
 	if err: print("\u001b[31mSomething went wrong, it may be because you entered something wrong... Please try again.\u001b[0m\n")
 	query = input("You can choose from the following options. Get wallpaper based on...\n\u001b[34m1) The season.\n2) Your search query.\n3) Unsplash trending.\u001b[0m\nYour choice: ").strip()
+	db = 'lastRun=None\n'
 	if not query in ('1', '2', '3'): config(1)
-	db = 'option=' + query + '\n'
+	db += 'option=' + query + '\n'
 	if query == '2':
 		search = input('Enter your search query: ').strip()
 		print("Verifying for results...\n")
@@ -22,7 +23,7 @@ def config(err = 0):
 			else:
 				config(1)
 				return
-			db += 'search=' + search + '\n'
+			db += 'search="' + search + '"\n'
 	time = input("How often do you want your wallpapers to change?\n\u001b[37m1) On every log in\u001b[0m\n\u001b[36m2) Daily\u001b[0m\n\u001b[34m3) Weekly\u001b[0m\n\u001b[30m4) When season changes\u001b[0m\nYour choice: ").strip()
 	if not time in ('1', '2', '3', '4'):
 		config(1)
@@ -36,8 +37,7 @@ def config(err = 0):
 	else:
 		config(1)
 		return
-	db += """
-###########################################################
+	db += """###########################################################
 # Be careful! Editing this can lead to unexpected errors! #
 # Syntax:  (Suggest - run client.py, it'll edit it for u) #
 # option=1|2|3                                            #
