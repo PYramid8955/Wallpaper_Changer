@@ -38,7 +38,7 @@ def getLinks(search_query, verify = 0):
 				response = len(nofollow_links)
 			return response
 		else:
-			return 404
+			return None
 	except KeyboardInterrupt:
 		print("\nOperation interrupted by the user.")
 	except Exception as e:
