@@ -23,7 +23,7 @@ WARNING_MSG = """###########################################################
 # 4 - When season changes                                 #
 ###########################################################"""
 
-with open("db.txt", "r") as f:
+with open(f"{home}/.WallpaperCh/db.txt", "r") as f:
 	db = f.read().split('\n')
 db = {i.split("=")[0]: eval(i.split("=")[1]) for i in db[:db.index('###########################################################')]} # make a pretty dictionary from all the raw data obtained from the database by getting the data before comment, and then getting the keys and values using split and an inline for.
 
@@ -34,11 +34,11 @@ if db['time'] == 1:
 		for i in seasons.keys():
 			if now in i:
 				now = seasons[i]
-		os.system('wget -O wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+		os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 	elif db['option'] == 2:
-		os.system('wget -O wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+		os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 	else:
-		os.system('wget -O wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+		os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 elif db['time'] in (2, 3):
 	timeNow = datetime.datetime.now()
 	ADD_TO_DATE = [datetime.timedelta(days=1), datetime.timedelta(weeks=1)]
@@ -53,7 +53,7 @@ elif db['time'] in (2, 3):
 		for i in range(len(db.keys())):
 			dbText += list(db.keys())[i] + '=' + str(list(db.values())[i]) + '\n'
 		dbText += WARNING_MSG
-		with open("db.txt", "w") as f:
+		with open(f"{home}/.WallpaperCh/db.txt", "w") as f:
 			f.write(dbText)
 		if db['option'] == 1:
 			seasons = {(12, 1, 2): 'winter', (3, 4, 5): 'spring', (6, 7, 8): 'summer', (9, 10, 11): 'autumn'}
@@ -61,11 +61,11 @@ elif db['time'] in (2, 3):
 			for i in seasons.keys():
 				if now in i:
 					now = seasons[i]
-			os.system('wget -O wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 		elif db['option'] == 2:
-			os.system('wget -O wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 		else:
-			os.system('wget -O wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 	
 else:
 	seasons = {(12, 1, 2): 'winter', (3, 4, 5): 'spring', (6, 7, 8): 'summer', (9, 10, 11): 'autumn'}
@@ -84,13 +84,13 @@ else:
 		for i in range(len(db.keys())):
 			dbText += list(db.keys())[i] + '=' + str(list(db.values())[i]) + '\n'
 		dbText += WARNING_MSG
-		with open("db.txt", "w") as f:
+		with open(f"{home}/.WallpaperCh/db.txt", "w") as f:
 			f.write(dbText)
 		if db['option'] == 1:
-			os.system('wget -O wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 		elif db['option'] == 2:
-			os.system('wget -O wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 		else:
-			os.system('wget -O wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
 		
 	

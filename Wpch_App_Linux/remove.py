@@ -4,5 +4,5 @@ if input("\u001b[31mYou are sure that you want to delete Wallpaper_Changer?\u001
 	home = os.path.expanduser('~')
 	os.remove(f"{home}/.config/autostart/wpch.desktop")
 	shutil.rmtree(f"{home}/.WallpaperCh")
-	print("\nDone! Wallpaper_Changer was successfully deleted from your system. If you change your mind you can download it at any time from github/PYramid8955.")
+	print("\nDone! Wallpaper_Changer was successfully deleted from your system. If you change your mind you can download it at any time at https://github.com/PYramid8955/Wallpaper_Changer .")
 	quit()

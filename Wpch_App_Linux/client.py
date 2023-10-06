@@ -73,7 +73,7 @@ elif input("\u001b[32mDo you want to install the app?\u001b[0m \u001b[33m(Y/N)\u
 	config()
 	autostart = f'''[Desktop Entry]
 	Type=Application
-	Exec=python3 {home}/.WallpaperCh/main.py
+	Exec=/usr/bin/python3 /home/cs/.WallpaperCh/main.py
 	Hidden=false
 	NoDisplay=false
 	X-GNOME-Autostart-enabled=true
