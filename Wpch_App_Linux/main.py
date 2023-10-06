@@ -34,11 +34,11 @@ if db['time'] == 1:
 		for i in seasons.keys():
 			if now in i:
 				now = seasons[i]
-		os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+		os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper && gsettings set org.gnome.desktop.background picture-uri-dark file:///{home}/.WallpaperCh/wallpaper')
 	elif db['option'] == 2:
-		os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+		os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper && gsettings set org.gnome.desktop.background picture-uri-dark file:///{home}/.WallpaperCh/wallpaper')
 	else:
-		os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+		os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper && gsettings set org.gnome.desktop.background picture-uri-dark file:///{home}/.WallpaperCh/wallpaper')
 elif db['time'] in (2, 3):
 	timeNow = datetime.datetime.now()
 	ADD_TO_DATE = [datetime.timedelta(days=1), datetime.timedelta(weeks=1)]
@@ -61,11 +61,11 @@ elif db['time'] in (2, 3):
 			for i in seasons.keys():
 				if now in i:
 					now = seasons[i]
-			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper && gsettings set org.gnome.desktop.background picture-uri-dark file:///{home}/.WallpaperCh/wallpaper')
 		elif db['option'] == 2:
-			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper && gsettings set org.gnome.desktop.background picture-uri-dark file:///{home}/.WallpaperCh/wallpaper')
 		else:
-			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper && gsettings set org.gnome.desktop.background picture-uri-dark file:///{home}/.WallpaperCh/wallpaper')
 	
 else:
 	seasons = {(12, 1, 2): 'winter', (3, 4, 5): 'spring', (6, 7, 8): 'summer', (9, 10, 11): 'autumn'}
@@ -87,10 +87,10 @@ else:
 		with open(f"{home}/.WallpaperCh/db.txt", "w") as f:
 			f.write(dbText)
 		if db['option'] == 1:
-			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(now) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper && gsettings set org.gnome.desktop.background picture-uri-dark file:///{home}/.WallpaperCh/wallpaper')
 		elif db['option'] == 2:
-			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks(db['search']) + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper && gsettings set org.gnome.desktop.background picture-uri-dark file:///{home}/.WallpaperCh/wallpaper')
 		else:
-			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper')
+			os.system(f'wget -O {home}/.WallpaperCh/wallpaper ' + getLinks('trending') + f' && gsettings set org.gnome.desktop.background picture-uri file:///{home}/.WallpaperCh/wallpaper && gsettings set org.gnome.desktop.background picture-uri-dark file:///{home}/.WallpaperCh/wallpaper')
 		
 	
