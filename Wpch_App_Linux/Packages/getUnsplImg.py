@@ -30,7 +30,8 @@ def get_nofollow_links(url):
 def getLinks(search_query, verify = 0):
 	try:
 		url = f'https://unsplash.com/s/photos/{search_query}?orientation=landscape&license=free'
-		nofollow_links = get_nofollow_links(url)
+		nofollow_links = list({None if i == 'https://unsplash.com/login' else i for i in get_nofollow_links(url)})
+		nofollow_links.remove(None)
 		if nofollow_links:
 			if not verify:
 				response = choice(nofollow_links)
