@@ -1,3 +1,11 @@
+#todo:
+#https://stackoverflow.com/questions/63265471/beatifulsoup-unable-to-load-all-images-from-a-scrolling-page
+#import requests
+
+#page_no = 1
+#res = requests.get("https://unsplash.com/napi/search/photos?query=window&xp=&per_page=20&page={}".format(page_no))
+#print(res.json())
+
 import requests
 from bs4 import BeautifulSoup
 from random import choice
